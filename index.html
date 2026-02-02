@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .box {
+    background: rgba(255,255,255,0.15);
+    padding: 30px;
+    border-radius: 25px;
+    max-width: 420px;
+  }
+
+  h1 { margin-bottom: 20px; }
+
+  button {
+    padding: 12px 26px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  .yes { background: #ff2d55; color: white; }
+  .no { background: #333; color: white; }
+
+  img {
+    width: 100%;
+    border-radius: 18px;
+    margin-top: 15px;
+  }
+
+  .letter { margin-top: 15px; font-size: 18px; line-height: 1.6; font-weight: bold; }
+
+  .hidden { display: none; }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 24px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Question Box -->
+<div class="box" id="questionBox">
+  <h1>Will you be my Valentine? 💖</h1>
+  <button class="yes" onclick="yesClicked()">Yes 💘</button>
+  <button class="no" onclick="noClicked()">No 💔</button>
+</div>
+
+<!-- Love Letter Box -->
+<div class="box hidden" id="loveBox">
+  <h1>You said YES 💞</h1>
+  <img src="us.jpg" alt="Us Together">
+  <div class="letter">I know you'll say YES 😅 </div>
+</div>
+
+<script>
+  function yesClicked() {
+    document.getElementById("questionBox").classList.add("hidden");
+    document.getElementById("loveBox").classList.remove("hidden");
+  }
+
+  function noClicked() {
+    alert("Oh! Maybe next time 💔");
+  }
+
+  // Floating hearts generator
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }, 400);
+</script>
+
+</body>
+</html>
